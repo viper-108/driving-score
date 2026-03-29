@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFilterTabs();
     initSmoothScroll();
     initScrollAnimations();
+    initFeatureCards();
 });
 
 // ===== SCORE GAUGE ANIMATION =====
@@ -472,4 +473,31 @@ function formatNumber(num) {
 
 function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
+}
+
+// ===== FEATURE CARDS ACCORDION =====
+function initFeatureCards() {
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    featureCards.forEach(card => {
+        const header = card.querySelector('.feature-card-header');
+        if (!header) return;
+
+        header.addEventListener('click', () => {
+            const isExpanded = card.classList.contains('expanded');
+
+            // Close all other cards in the same category
+            const parentGrid = card.closest('.features-grid');
+            if (parentGrid) {
+                parentGrid.querySelectorAll('.feature-card.expanded').forEach(openCard => {
+                    if (openCard !== card) {
+                        openCard.classList.remove('expanded');
+                    }
+                });
+            }
+
+            // Toggle the clicked card
+            card.classList.toggle('expanded', !isExpanded);
+        });
+    });
 }
