@@ -1631,7 +1631,159 @@ body {
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
+/* ===== PITCH CTA BANNER ===== */
+.pitch-cta-banner {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pitch-cta-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+}
+
+.pitch-cta-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.08), transparent 70%);
+    pointer-events: none;
+}
+
+.pitch-cta-content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+}
+
+.pitch-cta-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.15));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent-secondary);
+}
+
+.pitch-cta-content h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.pitch-cta-content p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.pitch-cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.pitch-cta-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: inherit;
+    border: none;
+}
+
+.pitch-cta-btn.primary {
+    background: var(--accent-gradient);
+    color: white;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.pitch-cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
+}
+
+.pitch-cta-btn.secondary {
+    background: transparent;
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+}
+
+.pitch-cta-btn.secondary:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/* ===== MOBILE NAV OVERLAY ===== */
+.body-no-scroll {
+    overflow: hidden;
+}
+
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Hamburger animation */
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* ===== RESPONSIVE ===== */
+
+/* --- Tablet landscape & small desktop --- */
 @media (max-width: 1024px) {
     .hero-grid {
         grid-template-columns: 1fr;
@@ -1655,67 +1807,544 @@ body {
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    .user-name {
-        display: none;
-    }
-    .mobile-menu-btn {
-        display: flex;
-    }
-    .hero-section {
-        padding: 80px 0 32px;
-    }
-    .score-card-main {
-        padding: 24px 16px;
-    }
-    .quick-stats {
-        grid-template-columns: 1fr;
-    }
-    .vehicles-grid {
-        grid-template-columns: 1fr;
-    }
     .steps-grid {
         grid-template-columns: 1fr 1fr;
     }
+    .pitch-cta-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px;
+    }
+    .pitch-cta-content {
+        flex-direction: column;
+    }
+    .pitch-cta-actions {
+        flex-direction: row;
+    }
+}
+
+/* --- Tablet portrait & mobile --- */
+@media (max-width: 768px) {
+    /* Mobile Nav */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 14, 26, 0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 32px 24px;
+        gap: 4px;
+        z-index: 999;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-links.mobile-open {
+        display: flex;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        padding: 14px 20px;
+        border-radius: var(--radius-md);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    /* Notification panel full width on mobile */
+    .notification-panel {
+        width: 100vw;
+        right: -100vw;
+    }
+
+    /* Hero */
+    .hero-section {
+        padding: 80px 0 32px;
+    }
+
+    .score-card-main {
+        padding: 24px 16px;
+    }
+
+    .score-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* Quick Stats */
+    .quick-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .stat-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .stat-value {
+        font-size: 20px;
+    }
+
+    /* Vehicles */
+    .vehicles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-card {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .vehicle-icon {
+        width: 52px;
+        height: 52px;
+    }
+
+    .vehicle-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Steps */
+    .steps-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Footer */
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
+
+    /* Section headers */
+    .section {
+        padding: 48px 0;
+    }
+
     .section-header {
         flex-direction: column;
         gap: 16px;
         align-items: flex-start;
     }
-    .crisis-stats {
-        justify-content: flex-start;
+
+    .section-header h2 {
+        font-size: 24px;
     }
+
+    /* Filter tabs horizontal scroll */
+    .filter-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        max-width: 100%;
+        scrollbar-width: none;
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-tab {
+        flex-shrink: 0;
+    }
+
+    /* Timeline */
+    .violation-timeline {
+        padding-left: 30px;
+    }
+
+    .violation-timeline::before {
+        left: 10px;
+    }
+
+    .timeline-dot {
+        left: -27px;
+    }
+
+    .timeline-card {
+        padding: 16px;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .timeline-header h4 {
+        font-size: 14px;
+    }
+
+    .timeline-meta {
+        font-size: 11px;
+    }
+
+    .timeline-impact {
+        align-self: flex-start;
+        font-size: 14px;
+    }
+
+    .timeline-details {
+        gap: 8px;
+    }
+
+    /* Crisis stats */
+    .crisis-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        justify-content: center;
+    }
+
     .crisis-number {
         font-size: 28px;
     }
-    .vehicle-card {
-        flex-direction: column;
-        text-align: center;
+
+    .crisis-label {
+        font-size: 11px;
     }
+
+    /* Insurance */
+    .insurance-comparison {
+        padding: 20px;
+    }
+
+    .insurance-comparison h3 {
+        font-size: 16px;
+    }
+
+    .premium-bar span {
+        font-size: 12px;
+        padding-right: 8px;
+    }
+
+    .offer-card {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .offer-logo {
+        font-size: 11px;
+        padding: 8px 10px;
+        min-width: 75px;
+    }
+
+    .offer-price {
+        font-size: 17px;
+    }
+
+    .offer-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+
+    /* Features */
     .features-grid {
         grid-template-columns: 1fr;
     }
+
+    .features-category-title {
+        font-size: 16px;
+    }
+
+    .feature-card-header {
+        padding: 16px;
+    }
+
+    .feature-icon-wrap {
+        width: 40px;
+        height: 40px;
+    }
+
+    .feature-icon-wrap svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .feature-card-info h4 {
+        font-size: 14px;
+    }
+
+    .feature-detail-content {
+        padding: 0 16px 16px;
+    }
+
+    .feature-stats-row {
+        gap: 10px;
+    }
+
+    .feature-stat {
+        min-width: 80px;
+        padding: 10px 8px;
+    }
+
+    .feature-stat-value {
+        font-size: 17px;
+    }
+
+    .feature-stat-label {
+        font-size: 10px;
+    }
+
+    .feature-detail-note {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    /* Analytics */
+    .analytics-card {
+        padding: 20px;
+    }
+
+    /* City rankings */
+    .city-rank {
+        grid-template-columns: 24px 70px 1fr 36px;
+        gap: 8px;
+    }
+
+    .rank-city {
+        font-size: 12px;
+    }
+
+    /* Percentile */
+    .percentile-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .percentile-number span {
+        font-size: 30px;
+    }
+
+    .percentile-text {
+        font-size: 13px;
+    }
+
+    /* Pitch CTA */
+    .pitch-cta-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .pitch-cta-btn {
+        justify-content: center;
+    }
+
+    .pitch-cta-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .pitch-cta-content h2 {
+        font-size: 18px;
+    }
+
+    .pitch-cta-content p {
+        font-size: 12px;
+    }
 }
 
+/* --- Small mobile --- */
 @media (max-width: 480px) {
-    .steps-grid {
-        grid-template-columns: 1fr;
+    .container {
+        padding: 0 16px;
     }
+
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .section-header h2 {
+        font-size: 20px;
+    }
+
+    /* Score gauge */
     .score-gauge-container {
         width: 220px;
         height: 140px;
     }
+
     .score-number {
         font-size: 44px;
+    }
+
+    .score-badge {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    /* Quick stats 1 column on very small */
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+
+    /* Steps */
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-card {
+        padding: 24px 16px;
+    }
+
+    .step-card h3 {
+        font-size: 14px;
+    }
+
+    .step-card p {
+        font-size: 12px;
+    }
+
+    /* Vehicle card stacked on very small */
+    .vehicle-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 14px;
+    }
+
+    /* Offer card stacked */
+    .offer-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .offer-btn {
+        width: 100%;
+    }
+
+    /* Crisis stats 2 columns on very small */
+    .crisis-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .crisis-number {
+        font-size: 24px;
+    }
+
+    .crisis-label {
+        font-size: 10px;
+    }
+
+    /* City rankings tighter */
+    .city-rank {
+        grid-template-columns: 22px 60px 1fr 32px;
+        gap: 6px;
+    }
+
+    .rank-num,
+    .rank-city,
+    .rank-score {
+        font-size: 11px;
+    }
+
+    /* Features thresholds */
+    .feature-threshold {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .threshold-action {
+        font-size: 10px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 32px 0 16px;
+    }
+
+    .footer-brand p {
+        font-size: 12px;
+    }
+
+    .footer-bottom p {
+        font-size: 11px;
+    }
+
+    /* Premium bars */
+    .premium-bar-container {
+        height: 30px;
+    }
+
+    .premium-bar span {
+        font-size: 11px;
+    }
+
+    .premium-label {
+        font-size: 13px;
+    }
+
+    .premium-sublabel {
+        font-size: 11px;
+    }
+
+    /* Pitch CTA smaller */
+    .pitch-cta-banner {
+        padding: 24px 16px;
+    }
+
+    .pitch-cta-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .pitch-cta-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .pitch-cta-content h2 {
+        font-size: 16px;
+    }
+
+    /* Score factors */
+    .factor-item {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .factor-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .factor-name {
+        font-size: 12px;
+    }
+
+    .factor-impact {
+        font-size: 13px;
+    }
+
+    /* Notification panel */
+    .notif-header {
+        padding: 16px;
+    }
+
+    .notif-item {
+        padding: 12px;
     }
 }
 
