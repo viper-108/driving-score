@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveScore India — Your Driving Credit Score</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <path d="M16 6 L16 16 L24 20" stroke="url(#logoGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#06b6d4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">DriveScore<span class="logo-accent">.in</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#history" class="nav-link">History</a>
+                <a href="#insurance" class="nav-link">Insurance</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#" class="nav-link">Family</a>
+            </div>
+            <div class="nav-right">
+                <div class="notification-bell" id="notifBell">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span class="notif-badge">3</span>
+                </div>
+                <div class="user-avatar" id="userMenu">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Crect width='36' height='36' rx='18' fill='%236366f1'/%3E%3Ctext x='18' y='23' text-anchor='middle' fill='white' font-size='14' font-family='Inter'%3EAS%3C/text%3E%3C/svg%3E" alt="User">
+                    <span class="user-name">Amit Shukla</span>
+                </div>
+            </div>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Score Section -->
+    <section class="hero-section" id="dashboard">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Main Score Card -->
+                <div class="score-card-main">
+                    <div class="score-header">
+                        <div>
+                            <h2 class="score-title">Your DriveScore</h2>
+                            <p class="score-subtitle">Last updated: 28 March 2026</p>
+                        </div>
+                        <div class="score-badge gold">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Gold Driver
+                        </div>
+                    </div>
+                    <div class="score-display">
+                        <div class="score-gauge-container">
+                            <svg class="score-gauge" viewBox="0 0 200 120">
+                                <defs>
+                                    <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#ef4444"/>
+                                        <stop offset="25%" stop-color="#f97316"/>
+                                        <stop offset="50%" stop-color="#eab308"/>
+                                        <stop offset="75%" stop-color="#22c55e"/>
+                                        <stop offset="100%" stop-color="#06b6d4"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Background arc -->
+                                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#1e293b" stroke-width="12" stroke-linecap="round"/>
+                                <!-- Colored arc -->
+                                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGradient)" stroke-width="12" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="251.2" class="gauge-fill"/>
+                                <!-- Score labels -->
+                                <text x="20" y="115" fill="#64748b" font-size="9" font-family="Inter">300</text>
+                                <text x="172" y="115" fill="#64748b" font-size="9" font-family="Inter">900</text>
+                            </svg>
+                            <div class="score-number-container">
+                                <div class="score-number" id="mainScore">0</div>
+                                <div class="score-outof">/ 900</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="score-change">
+                        <span class="change-positive">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M18 15l-6-6-6 6"/>
+                            </svg>
+                            +12 points
+                        </span>
+                        <span class="change-period">vs last month</span>
+                    </div>
+                    <div class="score-factors">
+                        <h3>Key Score Factors</h3>
+                        <div class="factor-list">
+                            <div class="factor-item positive">
+                                <div class="factor-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <polyline points="22 4 12 14.01 9 11.01"/>
+                                    </svg>
+                                </div>
+                                <div class="factor-info">
+                                    <span class="factor-name">Clean record: 8 months</span>
+                                    <div class="factor-bar"><div class="factor-fill" style="width:85%"></div></div>
+                                </div>
+                                <span class="factor-impact">+35</span>
+                            </div>
+                            <div class="factor-item positive">
+                                <div class="factor-icon">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <polyline points="22 4 12 14.01 9 11.01"/>
+                                    </svg>
+                                </div>
+                                <div class="factor-info">
+                                    <span class="factor-name">Defensive driving course completed</span>
+                                    <div class="factor-bar"><div class="factor-fill" style="width:70%"></div></div>
+                                </div>
+                                <span class="factor-impact">+25</span>
+                            </div>
+                            <div class="factor-item negative">
+                                <div class="factor-icon warn">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="12" y1="8" x2="12" y2="12"/>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                    </svg>
+                                </div>
+                                <div class="factor-info">
+                                    <span class="factor-name">Over-speeding violation (Jan 2026)</span>
+                                    <div class="factor-bar warning"><div class="factor-fill" style="width:40%"></div></div>
+                                </div>
+                                <span class="factor-impact neg">-35</span>
+                            </div>
+                            <div class="factor-item negative">
+                                <div class="factor-icon warn">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="12" y1="8" x2="12" y2="12"/>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                    </svg>
+                                </div>
+                                <div class="factor-info">
+                                    <span class="factor-name">Parking violation (Dec 2025)</span>
+                                    <div class="factor-bar warning"><div class="factor-fill" style="width:20%"></div></div>
+                                </div>
+                                <span class="factor-impact neg">-10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Panel -->
+                <div class="side-panel">
+                    <!-- Score Trend -->
+                    <div class="card trend-card">
+                        <h3>Score Trend (12 Months)</h3>
+                        <canvas id="trendChart" height="180"></canvas>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="quick-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-value">243</div>
+                                <div class="stat-label">Days Without Violation</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                                    <line x1="1" y1="10" x2="23" y2="10"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Vehicles Linked</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Total Violations</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-value">18%</div>
+                                <div class="stat-label">Insurance Savings</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Violation History Section -->
+    <section class="section" id="history">
+        <div class="container">
+            <div class="section-header">
+                <h2>Violation History</h2>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="high">High Severity</button>
+                    <button class="filter-tab" data-filter="medium">Medium</button>
+                    <button class="filter-tab" data-filter="low">Low</button>
+                </div>
+            </div>
+            <div class="violation-timeline">
+                <div class="timeline-item" data-severity="medium">
+                    <div class="timeline-dot orange"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h4>Over-speeding: 82 km/h in 60 km/h zone</h4>
+                                <p class="timeline-meta">
+                                    <span>15 Jan 2026</span>
+                                    <span class="separator">|</span>
+                                    <span>NH-44, Hyderabad</span>
+                                    <span class="separator">|</span>
+                                    <span>ANPR Camera</span>
+                                </p>
+                            </div>
+                            <div class="timeline-impact neg">-35 pts</div>
+                        </div>
+                        <div class="timeline-details">
+                            <span class="severity-badge medium">Medium Severity</span>
+                            <span class="challan-status paid">Challan Paid: Rs 2,000</span>
+                            <span class="vehicle-tag">KA-01-AB-1234</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-severity="low">
+                    <div class="timeline-dot yellow"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h4>Parking Violation: No Parking Zone</h4>
+                                <p class="timeline-meta">
+                                    <span>03 Dec 2025</span>
+                                    <span class="separator">|</span>
+                                    <span>MG Road, Bengaluru</span>
+                                    <span class="separator">|</span>
+                                    <span>Traffic Officer</span>
+                                </p>
+                            </div>
+                            <div class="timeline-impact neg">-10 pts</div>
+                        </div>
+                        <div class="timeline-details">
+                            <span class="severity-badge low">Low Severity</span>
+                            <span class="challan-status paid">Challan Paid: Rs 500</span>
+                            <span class="vehicle-tag">KA-01-AB-1234</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-severity="high">
+                    <div class="timeline-dot red"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h4>Red Light Violation</h4>
+                                <p class="timeline-meta">
+                                    <span>18 Aug 2025</span>
+                                    <span class="separator">|</span>
+                                    <span>Silk Board Junction, Bengaluru</span>
+                                    <span class="separator">|</span>
+                                    <span>Traffic Signal Camera</span>
+                                </p>
+                            </div>
+                            <div class="timeline-impact neg">-55 pts</div>
+                        </div>
+                        <div class="timeline-details">
+                            <span class="severity-badge high">High Severity</span>
+                            <span class="challan-status paid">Challan Paid: Rs 5,000</span>
+                            <span class="vehicle-tag">KA-01-CD-5678</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item positive-event">
+                    <div class="timeline-dot green"></div>
+                    <div class="timeline-card positive">
+                        <div class="timeline-header">
+                            <div>
+                                <h4>Defensive Driving Course Completed</h4>
+                                <p class="timeline-meta">
+                                    <span>01 Jul 2025</span>
+                                    <span class="separator">|</span>
+                                    <span>IDTR, Bengaluru</span>
+                                </p>
+                            </div>
+                            <div class="timeline-impact pos">+25 pts</div>
+                        </div>
+                        <div class="timeline-details">
+                            <span class="severity-badge positive">Score Boost</span>
+                            <span class="challan-status course">Certificate: IDTR-2025-4821</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item positive-event">
+                    <div class="timeline-dot green"></div>
+                    <div class="timeline-card positive">
+                        <div class="timeline-header">
+                            <div>
+                                <h4>6-Month Clean Record Bonus</h4>
+                                <p class="timeline-meta">
+                                    <span>15 Jun 2025</span>
+                                    <span class="separator">|</span>
+                                    <span>System Generated</span>
+                                </p>
+                            </div>
+                            <div class="timeline-impact pos">+20 pts</div>
+                        </div>
+                        <div class="timeline-details">
+                            <span class="severity-badge positive">Score Boost</span>
+                            <span class="challan-status course">Auto-awarded for clean record</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Impact Section -->
+    <section class="section section-alt" id="insurance">
+        <div class="container">
+            <div class="section-header">
+                <h2>Insurance Impact</h2>
+                <p class="section-desc">See how your DriveScore affects your insurance premiums</p>
+            </div>
+            <div class="insurance-grid">
+                <div class="insurance-comparison">
+                    <h3>Your Premium Comparison</h3>
+                    <div class="premium-visual">
+                        <div class="premium-bar-group">
+                            <div class="premium-label">Without DriveScore</div>
+                            <div class="premium-bar-container">
+                                <div class="premium-bar standard" style="width: 100%">
+                                    <span>Rs 12,500/yr</span>
+                                </div>
+                            </div>
+                            <div class="premium-sublabel">Standard rate for all</div>
+                        </div>
+                        <div class="premium-bar-group highlight">
+                            <div class="premium-label">With Your DriveScore (782)</div>
+                            <div class="premium-bar-container">
+                                <div class="premium-bar discounted" style="width: 72%">
+                                    <span>Rs 10,250/yr</span>
+                                </div>
+                            </div>
+                            <div class="premium-sublabel savings">You save Rs 2,250/year (18% discount)</div>
+                        </div>
+                        <div class="premium-bar-group">
+                            <div class="premium-label">Red Zone Driver (Score: 380)</div>
+                            <div class="premium-bar-container">
+                                <div class="premium-bar penalty" style="width: 100%">
+                                    <span>Rs 25,000/yr</span>
+                                </div>
+                            </div>
+                            <div class="premium-sublabel danger">100% surcharge applied</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="insurance-offers">
+                    <h3>Personalized Offers</h3>
+                    <div class="offer-cards">
+                        <div class="offer-card">
+                            <div class="offer-logo">ICICI Lombard</div>
+                            <div class="offer-details">
+                                <div class="offer-type">Comprehensive Cover</div>
+                                <div class="offer-price">Rs 9,800<span>/yr</span></div>
+                                <div class="offer-discount">22% DriveScore Discount</div>
+                            </div>
+                            <button class="offer-btn">View Details</button>
+                        </div>
+                        <div class="offer-card">
+                            <div class="offer-logo">HDFC ERGO</div>
+                            <div class="offer-details">
+                                <div class="offer-type">Comprehensive Cover</div>
+                                <div class="offer-price">Rs 10,100<span>/yr</span></div>
+                                <div class="offer-discount">19% DriveScore Discount</div>
+                            </div>
+                            <button class="offer-btn">View Details</button>
+                        </div>
+                        <div class="offer-card">
+                            <div class="offer-logo">Acko</div>
+                            <div class="offer-details">
+                                <div class="offer-type">Comprehensive + Roadside</div>
+                                <div class="offer-price">Rs 10,500<span>/yr</span></div>
+                                <div class="offer-discount">16% DriveScore Discount</div>
+                            </div>
+                            <button class="offer-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- National Analytics Section -->
+    <section class="section" id="analytics">
+        <div class="container">
+            <div class="section-header">
+                <h2>National Driving Analytics</h2>
+                <p class="section-desc">India's driving safety at a glance</p>
+            </div>
+            <div class="analytics-grid">
+                <div class="analytics-card large">
+                    <h3>National Score Distribution</h3>
+                    <canvas id="distributionChart" height="250"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h3>Your Percentile</h3>
+                    <div class="percentile-display">
+                        <div class="percentile-circle">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#1e293b" stroke-width="8"/>
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="url(#percGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3" class="percentile-fill" transform="rotate(-90 60 60)"/>
+                                <defs>
+                                    <linearGradient id="percGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#6366f1"/>
+                                        <stop offset="100%" stop-color="#06b6d4"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="percentile-number">
+                                <span id="percentileNum">0</span>
+                                <small>percentile</small>
+                            </div>
+                        </div>
+                        <p class="percentile-text">You drive safer than <strong>78%</strong> of drivers in Karnataka</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <h3>City Safety Index</h3>
+                    <div class="city-rankings">
+                        <div class="city-rank">
+                            <span class="rank-num">#1</span>
+                            <span class="rank-city">Chandigarh</span>
+                            <div class="rank-bar-container"><div class="rank-bar" style="width:92%"></div></div>
+                            <span class="rank-score">824</span>
+                        </div>
+                        <div class="city-rank">
+                            <span class="rank-num">#2</span>
+                            <span class="rank-city">Pune</span>
+                            <div class="rank-bar-container"><div class="rank-bar" style="width:85%"></div></div>
+                            <span class="rank-score">788</span>
+                        </div>
+                        <div class="city-rank">
+                            <span class="rank-num">#3</span>
+                            <span class="rank-city">Hyderabad</span>
+                            <div class="rank-bar-container"><div class="rank-bar" style="width:80%"></div></div>
+                            <span class="rank-score">762</span>
+                        </div>
+                        <div class="city-rank">
+                            <span class="rank-num">#4</span>
+                            <span class="rank-city">Bengaluru</span>
+                            <div class="rank-bar-container"><div class="rank-bar" style="width:76%"></div></div>
+                            <span class="rank-score">741</span>
+                        </div>
+                        <div class="city-rank">
+                            <span class="rank-num">#5</span>
+                            <span class="rank-city">Mumbai</span>
+                            <div class="rank-bar-container"><div class="rank-bar" style="width:73%"></div></div>
+                            <span class="rank-score">722</span>
+                        </div>
+                        <div class="city-rank">
+                            <span class="rank-num">#6</span>
+                            <span class="rank-city">Delhi</span>
+                            <div class="rank-bar-container"><div class="rank-bar" style="width:65%"></div></div>
+                            <span class="rank-score">685</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="analytics-card wide">
+                    <h3>India Road Safety: The Crisis in Numbers</h3>
+                    <div class="crisis-stats">
+                        <div class="crisis-stat">
+                            <div class="crisis-number" data-count="493">0</div>
+                            <div class="crisis-label">Lives lost daily</div>
+                        </div>
+                        <div class="crisis-stat">
+                            <div class="crisis-number" data-count="180000">0</div>
+                            <div class="crisis-label">Annual fatalities</div>
+                        </div>
+                        <div class="crisis-stat">
+                            <div class="crisis-number" data-count="473000">0</div>
+                            <div class="crisis-label">Accidents per year</div>
+                        </div>
+                        <div class="crisis-stat">
+                            <div class="crisis-number" data-count="75">0</div>
+                            <div class="crisis-label">% Challans unpaid</div>
+                        </div>
+                        <div class="crisis-stat">
+                            <div class="crisis-number" data-count="400">0</div>
+                            <div class="crisis-label">Million registered vehicles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Linked Vehicles</h2>
+                <button class="add-btn">+ Add Vehicle</button>
+            </div>
+            <div class="vehicles-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-icon car">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M5 17h14M5 17a2 2 0 01-2-2V9a2 2 0 012-2h.586a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293h6.172a1 1 0 00.707-.293l1.414-1.414A1 1 0 0117.414 7H18a2 2 0 012 2v6a2 2 0 01-2 2M5 17a2 2 0 002 2h1a2 2 0 002-2M14 17a2 2 0 002 2h1a2 2 0 002-2"/>
+                        </svg>
+                    </div>
+                    <div class="vehicle-info">
+                        <h4>Hyundai Creta 2023</h4>
+                        <p class="vehicle-reg">KA-01-AB-1234</p>
+                        <div class="vehicle-meta">
+                            <span>Petrol</span>
+                            <span class="dot"></span>
+                            <span>SUV</span>
+                            <span class="dot"></span>
+                            <span>Personal</span>
+                        </div>
+                    </div>
+                    <div class="vehicle-score">
+                        <div class="mini-score good">795</div>
+                        <small>Vehicle Score</small>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-icon bike">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="5" cy="17" r="3"/>
+                            <circle cx="19" cy="17" r="3"/>
+                            <path d="M12 17V5l4 6h-4"/>
+                        </svg>
+                    </div>
+                    <div class="vehicle-info">
+                        <h4>Royal Enfield Classic 350</h4>
+                        <p class="vehicle-reg">KA-01-CD-5678</p>
+                        <div class="vehicle-meta">
+                            <span>Petrol</span>
+                            <span class="dot"></span>
+                            <span>Motorcycle</span>
+                            <span class="dot"></span>
+                            <span>Personal</span>
+                        </div>
+                    </div>
+                    <div class="vehicle-score">
+                        <div class="mini-score average">712</div>
+                        <small>Vehicle Score</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works">
+        <div class="container">
+            <div class="section-header center">
+                <h2>How DriveScore Works</h2>
+                <p class="section-desc">A transparent, data-driven system — just like CIBIL for driving</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M23 7l-7 5 7 5V7z"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                    </div>
+                    <h3>Data Collection</h3>
+                    <p>Traffic cameras, e-challan system, ITMS, FASTag, and police reports feed violations into DriveScore in real-time.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <h3>Score Calculation</h3>
+                    <p>AI engine processes violations by severity, frequency, and recency. Positive behaviors boost your score over time.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Score Assigned</h3>
+                    <p>Every driver gets a score from 300-900, categorized into tiers from Red Zone to Platinum Driver.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <h3>Real-World Impact</h3>
+                    <p>Insurance companies, RTOs, employers, and lenders use your score for pricing, licensing, and decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <div class="logo-icon">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                                <circle cx="16" cy="16" r="14" stroke="url(#logoGrad2)" stroke-width="3"/>
+                                <path d="M16 6 L16 16 L24 20" stroke="url(#logoGrad2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                    <linearGradient id="logoGrad2" x1="0" y1="0" x2="32" y2="32">
+                                        <stop offset="0%" stop-color="#6366f1"/>
+                                        <stop offset="100%" stop-color="#06b6d4"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <span class="logo-text">DriveScore<span class="logo-accent">.in</span></span>
+                    </div>
+                    <p>India's first universal driving credit score. Making roads safer, one score at a time.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="#">Check Your Score</a>
+                    <a href="#">Insurance Offers</a>
+                    <a href="#">Fleet Management</a>
+                    <a href="#">API for Business</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Data Policy</a>
+                    <a href="#">Grievance Redressal</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>DriveScore India Pvt. Ltd. | CIN: U72900KA2026PTC000000 | Registered in Bengaluru, India</p>
+                <p>This is a prototype/demo. Not affiliated with any government entity.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notifPanel">
+        <div class="notif-header">
+            <h3>Notifications</h3>
+            <button class="notif-close" id="notifClose">&times;</button>
+        </div>
+        <div class="notif-list">
+            <div class="notif-item unread">
+                <div class="notif-icon green">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Score increased!</strong> Your DriveScore went up by 12 points this month.</p>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <div class="notif-item unread">
+                <div class="notif-icon blue">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                        <line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                </div>
+                <div class="notif-content">
+                    <p><strong>New insurance offer!</strong> ICICI Lombard is offering 22% discount based on your score.</p>
+                    <small>1 day ago</small>
+                </div>
+            </div>
+            <div class="notif-item unread">
+                <div class="notif-icon orange">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="notif-content">
+                    <p><strong>Vehicle fitness reminder:</strong> KA-01-AB-1234 fitness certificate expires in 30 days.</p>
+                    <small>3 days ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
