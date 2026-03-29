@@ -34,6 +34,7 @@
                 <a href="#insurance" class="nav-link">Insurance</a>
                 <a href="#analytics" class="nav-link">Analytics</a>
                 <a href="#features" class="nav-link">Features</a>
+                <a href="pitch.html" class="nav-link" target="_blank">Pitch Doc</a>
                 <a href="#" class="nav-link">Family</a>
             </div>
             <div class="nav-right">
@@ -54,6 +55,7 @@
             </div>
         </div>
     </nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <!-- Hero Score Section -->
     <section class="hero-section" id="dashboard">
@@ -1385,6 +1387,47 @@
         </div>
     </section>
 
+    <!-- Pitch Document CTA Section -->
+    <section class="section section-alt" id="pitch-cta">
+        <div class="container">
+            <div class="pitch-cta-banner">
+                <div class="pitch-cta-content">
+                    <div class="pitch-cta-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Investor Pitch Document</h2>
+                        <p>13-page detailed document with market data, revenue projections, competitive analysis, all 18 platform features, and complete business case — ready to share with investors.</p>
+                    </div>
+                </div>
+                <div class="pitch-cta-actions">
+                    <a href="pitch.html" target="_blank" class="pitch-cta-btn primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        Open Pitch Document
+                    </a>
+                    <a href="pitch.html" target="_blank" class="pitch-cta-btn secondary" onclick="setTimeout(()=>window.open('pitch.html','_blank').print(),1000);return false;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Download as PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1413,6 +1456,7 @@
                     <a href="#">Insurance Offers</a>
                     <a href="#">Fleet Management</a>
                     <a href="#">API for Business</a>
+                    <a href="pitch.html" target="_blank">Pitch Document</a>
                 </div>
                 <div class="footer-links">
                     <h4>Company</h4>
