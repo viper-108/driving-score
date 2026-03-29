@@ -1,6 +1,7 @@
 // ===== DriveScore India - Interactive Prototype =====
 
 document.addEventListener('DOMContentLoaded', () => {
+    initMobileMenu();
     initScoreAnimation();
     initTrendChart();
     initDistributionChart();
@@ -11,7 +12,87 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     initScrollAnimations();
     initFeatureCards();
+    initCanvasResize();
 });
+
+// ===== MOBILE MENU =====
+function initMobileMenu() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.getElementById('mobileOverlay');
+
+    if (!menuBtn || !navLinks) return;
+
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.contains('mobile-open');
+
+        if (isOpen) {
+            closeMobileMenu(menuBtn, navLinks, overlay);
+        } else {
+            openMobileMenu(menuBtn, navLinks, overlay);
+        }
+    });
+
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu(menuBtn, navLinks, overlay);
+        });
+    });
+
+    // Close on overlay click
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            closeMobileMenu(menuBtn, navLinks, overlay);
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
+            closeMobileMenu(menuBtn, navLinks, overlay);
+        }
+    });
+}
+
+function openMobileMenu(btn, nav, overlay) {
+    nav.classList.add('mobile-open');
+    btn.classList.add('active');
+    document.body.classList.add('body-no-scroll');
+    if (overlay) overlay.classList.add('active');
+}
+
+function closeMobileMenu(btn, nav, overlay) {
+    nav.classList.remove('mobile-open');
+    btn.classList.remove('active');
+    document.body.classList.remove('body-no-scroll');
+    if (overlay) overlay.classList.remove('active');
+}
+
+// ===== CANVAS RESIZE HANDLER =====
+function initCanvasResize() {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // Redraw charts on resize / orientation change
+            const trendCanvas = document.getElementById('trendChart');
+            const distCanvas = document.getElementById('distributionChart');
+
+            if (trendCanvas) {
+                trendCanvas.width = 0;
+                trendCanvas.height = 0;
+                initTrendChart();
+            }
+            if (distCanvas) {
+                distCanvas.width = 0;
+                distCanvas.height = 0;
+                initDistributionChart();
+            }
+        }, 250);
+    });
+}
 
 // ===== SCORE GAUGE ANIMATION =====
 function initScoreAnimation() {
